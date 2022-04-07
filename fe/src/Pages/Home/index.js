@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import {
   Container,
   InputSearchContainer,
@@ -19,7 +21,7 @@ export function Home() {
 
       <Header>
         <strong>3 Contatos</strong>
-        <a href="/">Novo contato</a>
+        <Link to="/new">Novo contato</Link>
       </Header>
 
       <ListContainer>
@@ -40,30 +42,12 @@ export function Home() {
             <span>4002-8922</span>
           </div>
           <div className="actions">
-            <a href="/">
+            <Link to="/edit/1">
               <img src={edit} alt="Edit" />
               <button type="button">
                 <img src={trash} alt="Delete" />
               </button>
-            </a>
-          </div>
-        </Card>
-        <Card>
-          <div className="info">
-            <div className="contact-name">
-              <strong>João Pedro Luz</strong>
-              <small>Instagram</small>
-            </div>
-            <span>joao.pedro.luz@hotmail.com</span>
-            <span>4002-8922</span>
-          </div>
-          <div className="actions">
-            <a href="/">
-              <img src={edit} alt="Edit" />
-              <button type="button">
-                <img src={trash} alt="Delete" />
-              </button>
-            </a>
+            </Link>
           </div>
         </Card>
       </ListContainer>
