@@ -2,7 +2,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Home } from './Pages/Home';
 import { NewContact } from './Pages/NewContact';
-import { EditContact } from './Pages/NewContact copy';
+import { EditContact } from './Pages/EditContact';
 
 export function Routes() {
   return (
