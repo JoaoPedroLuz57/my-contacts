@@ -21,12 +21,12 @@ export function ContactForm({ buttonLabel }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log({
-      name,
-      email,
-      phone,
-      category,
-    });
+    // console.log({
+    //   name,
+    //   email,
+    //   phone,
+    //   category,
+    // });
   }
 
   function handleNameChange(event) {
@@ -50,7 +50,7 @@ export function ContactForm({ buttonLabel }) {
   }
 
   return (
-    <Form onSubmit={(event) => handleSubmit(event)}>
+    <Form onSubmit={(event) => handleSubmit(event)} noValidate>
       <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
           placeholder="Nome"
@@ -62,6 +62,7 @@ export function ContactForm({ buttonLabel }) {
 
       <FormGroup error={getErrorMessageByFieldName('email')}>
         <Input
+          type="email"
           placeholder="E-mail"
           value={email}
           onChange={(event) => handleEmailChange(event)}
@@ -71,6 +72,7 @@ export function ContactForm({ buttonLabel }) {
 
       <FormGroup>
         <Input
+          type="tel"
           placeholder="Telefone"
           value={phone}
           onChange={(event) => setPhone(event.target.value)}
