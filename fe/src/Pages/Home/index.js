@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -18,9 +18,10 @@ export function Home() {
   const [orderBy, setOrderBy] = useState('asc');
   const [seachTerm, setSeachTerm] = useState('');
 
-  const filteredContacts = contacts.filter((contact) => (
-    contact.name.toLowerCase().includes(seachTerm.toLowerCase())
-  ));
+  const filteredContacts = useMemo(() => (
+    contacts.filter((contact) => (
+      contact.name.toLowerCase().includes(seachTerm.toLowerCase())
+    ))), [contacts, seachTerm]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
