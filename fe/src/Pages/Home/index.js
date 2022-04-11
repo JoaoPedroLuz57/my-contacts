@@ -34,7 +34,6 @@ export function Home() {
         setIsLoading(true);
 
         const contactsList = await ContactsService.listContacts(orderBy);
-        console.log('🚀 ~ loadContacts ~ contactsList', contactsList);
 
         setContacts(contactsList);
       } catch (error) {
