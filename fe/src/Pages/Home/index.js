@@ -1,9 +1,10 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import ContactsService from '../../services/ContactsService';
-
 import { Loader } from '../../components/Loader';
+
+import ContactsService from '../../services/ContactsService';
+// import { APIError } from '../../errors/ApiError';
 
 import {
   Container,
@@ -36,7 +37,11 @@ export function Home() {
         const contactsList = await ContactsService.listContacts(orderBy);
         setContacts(contactsList);
       } catch (error) {
-        console.log('Error:', error);
+        console.log('Name:', error.name);
+        console.log('Message:', error.message);
+        console.log('Response:', error.response);
+        console.log('Content-Type:', error.getContentType());
+        console.log(error);
       } finally {
         setIsLoading(false);
       }
