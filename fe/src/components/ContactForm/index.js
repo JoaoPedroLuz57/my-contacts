@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { isEmailValid } from '../../utils/isEmailValid';
 import { formatPhone } from '../../utils/formatPhone';
 import { useErrors } from '../../hooks/useErrors';
+import { categoriesService } from '../../services/CategoriesService';
 
 import { Form, ButtonConantainer } from './styles';
 
@@ -16,7 +17,8 @@ export function ContactForm({ buttonLabel }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [category, setCategory] = useState('');
+  const [categoryId, setCategoryId] = useState('');
+  const [categories, setCategories] = useState([]);
 
   const {
     errors,
@@ -27,15 +29,17 @@ export function ContactForm({ buttonLabel }) {
 
   const isFormValid = (name && errors.length === 0);
 
+  useEffect(() => {
+    async function loadCategories() {
+      const categoriesList = await categoriesService.listCategories();
+
+      setCategories(categoriesList);
+    }
+    loadCategories();
+  }, []);
+
   function handleSubmit(event) {
     event.preventDefault();
-
-    // console.log({
-    //   name,
-    //   email,
-    //   phone,
-    //   category,
-    // });
   }
 
   function handleNameChange(event) {
@@ -95,12 +99,16 @@ export function ContactForm({ buttonLabel }) {
 
       <FormGroup>
         <Select
-          value={category}
-          onChange={setCategory}
+          value={categoryId}
+          onChange={(event) => setCategoryId(event.target.value)}
         >
-          <option value="">Categoria</option>
-          <option value="instagram">Instagram</option>
-          <option value="discord">Discord</option>
+          <option value="">Sem categoria</option>
+
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
         </Select>
       </FormGroup>
 

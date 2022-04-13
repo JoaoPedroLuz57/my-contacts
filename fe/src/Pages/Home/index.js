@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Loader } from '../../components/Loader';
 import { Button } from '../../components/Button';
 
-import ContactsService from '../../services/ContactsService';
+import { contactsService } from '../../services/ContactsService';
 
 import {
   Container,
@@ -42,7 +42,7 @@ export function Home() {
     try {
       setIsLoading(true);
 
-      const contactsList = await ContactsService.listContacts(orderBy);
+      const contactsList = await contactsService.listContacts(orderBy);
 
       setHasError(false);
       setContacts(contactsList);
