@@ -63,12 +63,12 @@ export function ContactForm({ buttonLabel }) {
   }
 
   return (
-    <Form onSubmit={(event) => handleSubmit(event)} noValidate>
+    <Form onSubmit={handleSubmit} noValidate>
       <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
           placeholder="Nome *"
           value={name}
-          onChange={(event) => handleNameChange(event)}
+          onChange={handleNameChange}
           error={getErrorMessageByFieldName('name')}
         />
       </FormGroup>
@@ -78,7 +78,7 @@ export function ContactForm({ buttonLabel }) {
           type="email"
           placeholder="E-mail"
           value={email}
-          onChange={(event) => handleEmailChange(event)}
+          onChange={handleEmailChange}
           error={getErrorMessageByFieldName('email')}
         />
       </FormGroup>
@@ -88,7 +88,7 @@ export function ContactForm({ buttonLabel }) {
           type="tel"
           placeholder="Telefone"
           value={phone}
-          onChange={(event) => handlePhoneChange(event)}
+          onChange={handlePhoneChange}
           maxLength="15"
         />
       </FormGroup>
@@ -96,7 +96,7 @@ export function ContactForm({ buttonLabel }) {
       <FormGroup>
         <Select
           value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          onChange={setCategory}
         >
           <option value="">Categoria</option>
           <option value="instagram">Instagram</option>
