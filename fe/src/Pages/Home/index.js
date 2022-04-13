@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Loader } from '../../components/Loader';
@@ -33,7 +33,7 @@ export function Home() {
       contact.name.toLowerCase().includes(seachTerm.toLowerCase())
     ))), [contacts, seachTerm]);
 
-  async function loadContacts() {
+  const loadContacts = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -45,11 +45,11 @@ export function Home() {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [orderBy]);
 
   useEffect(() => {
     loadContacts();
-  }, [orderBy]);
+  }, [loadContacts]);
 
   function handleTryAgain() {
     loadContacts();
