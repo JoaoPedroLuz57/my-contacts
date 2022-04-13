@@ -68,6 +68,23 @@ export const EmptyListContainer = styled.div`
   }
 `;
 
+export const SearchNotFoundContainer = styled.div`
+  margin-top: 16px;
+  display: flex;
+  align-items: flex-start;
+
+  span {
+    color: ${({ theme }) => theme.colors.gray[200]};
+    margin-left: 24px;
+    word-break: break-word;
+  }
+
+  strong {
+      color: ${({ theme }) => theme.colors.danger.main};
+    }
+
+`;
+
 export const ErrorContainer = styled.div`
   margin-top: 16px;
   display: felx;

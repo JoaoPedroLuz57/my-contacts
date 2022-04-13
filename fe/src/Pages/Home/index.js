@@ -14,6 +14,7 @@ import {
   Header,
   EmptyListContainer,
   ErrorContainer,
+  SearchNotFoundContainer,
   ListHeader,
   Card,
 } from './style';
@@ -23,6 +24,7 @@ import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 import sad from '../../assets/images/sad.svg';
 import emptyBox from '../../assets/images/empty-box.svg';
+import magnifierQuestion from '../../assets/images/magnifier-question.svg';
 
 export function Home() {
   const [contacts, setContacts] = useState([]);
@@ -118,7 +120,7 @@ export function Home() {
         <>
           {(contacts.length < 1 && !isLoading) && (
             <EmptyListContainer>
-              <img src={emptyBox} alt="Empty Box" />
+              <img src={emptyBox} alt="Empty box" />
 
               <p>
                 Você ainda não tem nenhum contato cadastrado!
@@ -126,6 +128,17 @@ export function Home() {
                 para cadastrar o seu primeiro!
               </p>
             </EmptyListContainer>
+          )}
+
+          {(contacts.length > 0 && filteredContacts.length < 1) && (
+            <SearchNotFoundContainer>
+              <img src={magnifierQuestion} alt="Magnifier question" />
+
+              <span>
+                Nenhum contato foi encontrado para <strong>&ldquo;{seachTerm}&rdquo;</strong>.
+              </span>
+            </SearchNotFoundContainer>
+
           )}
 
           {filteredContacts.length > 0 && (
